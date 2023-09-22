@@ -1,0 +1,78 @@
+<div class="cabecero">
+  <div class="presupuesto">
+      <div class="presupuesto_titulo">
+          Presupuesto Disponible:
+      </div>
+      
+      <div class="presupuesto_valor">{{balance <=0 ? 'no tienes nada' : balance}}</div>
+      
+      <div class="presupuesto_ingreso limpiarEstilos">
+          <div class="presupuesto_ingreso--texto">Ingreso</div>
+          <div class="right">
+              <div class="presupuesto_ingreso--valor">+ {{ingreso}}</div>
+          </div>
+      </div>
+      
+      <div class="presupuesto_egreso limpiarEstilos">
+          <div class="presupuesto_egreso--text">Gasto</div>
+          <div class="right limpiarEstilos">
+              <div class="presupuesto_egreso--valor">- {{gasto}}</div>
+              <div class="presupuesto_egreso--porcentaje">{{porcentaje}}%</div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+  <div class="agregar">
+      <div class="agregar_contenedor">
+<select class="agregar_tipo" aria-label="Default select example" [(ngModel)]="tipo">
+  <option value="+" selected>+</option>
+  <option value="-">-</option>
+</select>
+          <input type="text" class="agregar_descripcion" required placeholder="Agregar Descripción" [(ngModel)]="motivo">
+          <input type="number" class="agregar_valor" required placeholder="Valor" [(ngModel)]="cantidad">
+          <button class="agregar_btn" (click)="agregar()">Agregar</button>
+      </div>
+  </div>
+
+  
+  <div class="contenedor limpiarEstilos">
+      <div class="ingreso">
+          <h2 class="ingreso_titulo">Ingresos</h2>
+
+              <div class="elemento limpiarEstilos" *ngFor="let item of IngresosMotivos">
+                  <div class="elemento_descripcion">{{item.motivo}}</div>
+                  <div class="right limpiarEstilos">
+                      <div class="elemento_valor">{{item.cantidad}}</div>
+                      <div class="elemento_eliminar">
+                          <button class="elemento_eliminar--btn" (click)="eliminarIngreso(item)">
+                              <mat-icon>delete</mat-icon>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+      </div>
+      
+      
+      
+      <div class="egreso">
+          <h2 class="egreso_titulo">Gastos</h2>
+             
+              
+              <div class="elemento limpiarEstilos" *ngFor="let item of gastosMotivos">
+                  <div class="elemento_descripcion">{{item.motivo}}</div>
+                  <div class="right limpiarEstilos">
+                      <div class="elemento_valor">- {{item.cantidad}}</div>
+                      <div class="elemento_porcentaje">21%</div>
+                      <div class="elemento_eliminar">
+                          <button class="elemento_eliminar--btn" (click)="eliminarGasto(item)"><mat-icon>delete</mat-icon></button>
+                      </div>
+                  </div>
+              </div>
+              
+              
+      </div>
+  </div>
